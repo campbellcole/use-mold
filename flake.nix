@@ -20,11 +20,12 @@
         }:
         mold:
         let
+          forceStr = if force then "true" else "false";
           cargoConfig = configTemplate { linker = "${mold}/bin/mold"; };
         in
         ''
           # if the cargo config doesn't exist or force is `true`, then write the config
-          if [[ ! -f "${cargoConfigPath}" ]] || ${force}; then
+          if [[ ! -f "${cargoConfigPath}" ]] || ${forceStr}; then
             cat > ${cargoConfigPath} <<EOF
             ${cargoConfig}
             EOF
