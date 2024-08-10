@@ -26,7 +26,7 @@ In your `flake.nix` that defines a devshell:
         # useMoldHook returns a function that accepts the mold package
         moldHook = use-mold.useMoldHook {
           # all attributes are optional and their default values are shown here
-          cargoConfigPath = "$PWD/.cargo/config.toml";
+          cargoConfigDir = "$PWD/.cargo";
           
           # the `linker` attribute is the full path to the mold binary
           configTemplate = ({ linker }: ''
