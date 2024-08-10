@@ -11,7 +11,7 @@
     in
     {
       useMoldHook =
-        { cargoConfigPath ? "$PWD/.cargo/config.toml"
+        { cargoConfigDir ? "$PWD/.cargo"
         , configTemplate ? defaultConfigTemplate
         , extraShellHook ? ""
         # force being set to true is highly recommended, otherwise when the mold path changes, the cargo config becomes invalid.
@@ -20,12 +20,16 @@
         }:
         mold:
         let
+          cargoConfigPath = "${cargoConfigDir}/cargo.toml";
           forceStr = if force then "true" else "false";
           cargoConfig = configTemplate { linker = "${mold}/bin/mold"; };
         in
         ''
           # if the cargo config doesn't exist or force is `true`, then write the config
           if [[ ! -f "${cargoConfigPath}" ]] || ${forceStr}; then
+            if [[ ! -d "${cargoConfigDir}" ]]; then
+              mkdir "${cargoConfigDir}"
+            fi
             cat > ${cargoConfigPath} <<EOF
             ${cargoConfig}
             EOF
