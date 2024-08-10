@@ -30,9 +30,9 @@
             if [[ ! -d "${cargoConfigDir}" ]]; then
               mkdir "${cargoConfigDir}"
             fi
-            cat > ${cargoConfigPath} <<EOF
-            ${cargoConfig}
-            EOF
+            cat > ${cargoConfigPath} << EOF
+          ${cargoConfig}
+          EOF
           fi
 
           ${extraShellHook}
