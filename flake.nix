@@ -25,7 +25,7 @@
           cargoConfig = configTemplate { linker = "${mold}/bin/mold"; };
         in
         ''
-          # if the cargo config doesn't exist or force is `true`, then write the config
+          # if the cargo config doesn't exist or force is 'true', then write the config
           if [[ ! -f "${cargoConfigPath}" ]] || ${forceStr}; then
             if [[ ! -d "${cargoConfigDir}" ]]; then
               mkdir "${cargoConfigDir}"
