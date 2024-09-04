@@ -20,7 +20,7 @@
         }:
         mold:
         let
-          cargoConfigPath = "${cargoConfigDir}/cargo.toml";
+          cargoConfigPath = "${cargoConfigDir}/config.toml";
           forceStr = if force then "true" else "false";
           cargoConfig = configTemplate { linker = "${mold}/bin/mold"; };
         in
